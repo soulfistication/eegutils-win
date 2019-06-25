@@ -1,4 +1,8 @@
 dist/
+
 build/
+
 *.DAT
+
 *.csv
+

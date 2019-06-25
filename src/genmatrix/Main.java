@@ -4,11 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
         
-//        MatrixCreator creator = new MatrixCreator();
-//        creator.generateMatrix();
+        MatrixGenerator creator = new MatrixGenerator();
+        creator.generate();
         
-        DataSequencer seq = new DataSequencer();
-        seq.open();
+        EpochSegmentator seq = new EpochSegmentator();
+        seq.segment();
     }
 
 }
