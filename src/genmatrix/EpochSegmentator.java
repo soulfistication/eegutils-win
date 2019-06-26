@@ -11,11 +11,11 @@ import java.util.logging.Logger;
 
 public class EpochSegmentator extends EGGFileManager {
     
-    private String output1 = "output-epoch1.csv";
-    private String output2 = "output-epoch2.csv";
-    private String output3 = "output-epoch3.csv";
+    private final String output1 = "output-epoch1.csv";
+    private final String output2 = "output-epoch2.csv";
+    private final String output3 = "output-epoch3.csv";
 
-    private String input = "p300.csv";
+    private final String input = "p300.csv";
     
     public void segment() {
         
@@ -94,7 +94,8 @@ public class EpochSegmentator extends EGGFileManager {
             long endTime = System.currentTimeMillis();
             long totalTime = endTime - startTime;
             
-            System.out.println("Segmentation finished in: " + totalTime + " milliseconds.");
+            System.out.println("Segmentation finished in: " + 
+                    totalTime + " milliseconds.");
             System.out.println("Stats: ");
             
             System.out.println("Total epoch1 = " + totalEpoch1);
@@ -109,16 +110,27 @@ public class EpochSegmentator extends EGGFileManager {
                     .log(Level.SEVERE, null, io);
         } finally {
             try {
-                reader1.close();
-                reader2.close();
+                if (reader1 != null) {
+                    reader1.close();
+                }
+                if (reader2 != null) {
+                    reader2.close();
+                }
+                if (writer1 != null) {
+                    writer1.close();
+                }
+                if (writer2 != null) {
+                    writer2.close();
+                }
+                if (writer3 != null) {
+                    writer3.close();
+                }
                 
-                writer1.close();
-                writer2.close();
-                writer3.close();
             } catch (IOException ex) {
                 Logger.getLogger(EpochSegmentator.class.getName())
                         .log(Level.SEVERE, null, ex);
             }
+            
         }
         
     }

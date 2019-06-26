@@ -5,9 +5,13 @@ import java.io.File;
 public class EGGFileManager {
     
     String outputFilename = "output-16-channels.csv";
+    
     String pathSeparator = File.separator;
+    
     char elementSeparator = ',';
+    
     int numberOfSamplesPerEpoch = 256;
+    
     int numberOfEpochs = 300;
     
     public String getCurrentDirectory() {
