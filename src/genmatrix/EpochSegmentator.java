@@ -11,9 +11,9 @@ import java.util.logging.Logger;
 
 public class EpochSegmentator extends EGGFileManager {
     
-    private String output1 = "output-epoch1.csv";
-    private String output2 = "output-epoch2.csv";
-    private String output3 = "output-epoch3.csv";
+    private String output1 = "epoch1.csv";
+    private String output2 = "epoch2.csv";
+    private String output3 = "epoch3.csv";
 
     private String input = "p300.csv";
     
