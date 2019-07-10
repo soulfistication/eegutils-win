@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MatrixGenerator extends EGGFileManager {
+public class MatrixGenerator extends EEGFileManager {
     
     String[] dataset1 = {
         "EGF1.DAT", "EGF3.DAT", "EGC3.DAT", "EGP3.DAT",
@@ -20,6 +20,10 @@ public class MatrixGenerator extends EGGFileManager {
         "EGF2.DAT", "EGF4.DAT", "EGC4.DAT", "EGP4.DAT",
         "EGO2.DAT", "EGF8.DAT", "EGT4.DAT", "EGT6.DAT"
     };
+    
+    MatrixGenerator(int numberOfEpochs) {
+        super(numberOfEpochs);
+    }
     
     @Override
     public void listFilenames() {
@@ -91,8 +95,6 @@ public class MatrixGenerator extends EGGFileManager {
             
             writer = new BufferedWriter(new FileWriter(getCurrentDirectory() +
                     pathSeparator + outputFilename));
-            
-            int numberOfLines = 76800;
             
             for (int i = 0; i < numberOfLines; i++) {
                 String line1 = reader1.readLine();

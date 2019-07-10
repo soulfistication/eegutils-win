@@ -9,13 +9,19 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class EpochSegmentator extends EGGFileManager {
+public class EpochSegmentator extends EEGFileManager {
     
-    private String output1 = "epoch1.csv";
-    private String output2 = "epoch2.csv";
-    private String output3 = "epoch3.csv";
+    private String output1 = "epoch1.asc";
+    private String output2 = "epoch2.asc";
+    private String output3 = "epoch3.asc";
+    
+    private String elementSegmentatorSeparator = ",";
 
     private String input = "p300.csv";
+    
+    EpochSegmentator(int numberOfEpochs) {
+        super(numberOfEpochs);
+    }
     
     public void segment() {
         
@@ -48,7 +54,7 @@ public class EpochSegmentator extends EGGFileManager {
             
             for (int i = 0; i < numberOfEpochs; i++) {
                 String line = reader1.readLine();
-                String[] elements = line.split( "" + elementSeparator);
+                String[] elements = line.split( "" + elementSegmentatorSeparator);
                 int last = elements.length - 1;
                 String element = elements[last];
                 int start = i * numberOfSamplesPerEpoch;
