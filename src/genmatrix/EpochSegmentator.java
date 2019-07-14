@@ -11,16 +11,63 @@ import java.util.logging.Logger;
 
 public class EpochSegmentator extends EEGFileManager {
     
-    private String output1 = "epoch1.asc";
-    private String output2 = "epoch2.asc";
-    private String output3 = "epoch3.asc";
+    String getOutput1() {
+        switch (type) {
+            case P1:
+                return "";
+            case EG:
+                return "";
+            case P3:
+                return "P3INFR.ASC";
+            case N4:
+                return "N4CONGR.ASC";
+            case EM:
+                return "EMENOJO.ASC";
+            default:
+                return "";
+        }
+    }
+    
+    String getOutput2() {
+        switch (type) {
+            case P1:
+                return "";
+            case EG:
+                return "";
+            case P3:
+                return "P3FREC.ASC";
+            case N4:
+                return "N4INCONG.ASC";
+            case EM:
+                return "EMFELIZ.ASC";
+            default:
+                return "";
+        }
+    }
+    
+    String getOutput3() {
+        switch (type) {
+            case P1:
+                return "";
+            case EG:
+                return "";
+            case P3:
+                return "";
+            case N4:
+                return "";
+            case EM:
+                return "EMNEUTRO.ASC";
+            default:
+                return "";
+        }
+    }
     
     private String elementSegmentatorSeparator = ",";
 
     private String input = "p300.csv";
     
-    EpochSegmentator(int numberOfEpochs) {
-        super(numberOfEpochs);
+    EpochSegmentator(ParadigmType type) {
+        super(type);
     }
     
     public void segment() {
@@ -32,27 +79,56 @@ public class EpochSegmentator extends EEGFileManager {
         BufferedWriter writer3 = null;
         
         try {
+            
+            // Configure the Writers depending on the Paradigm Type.
+            
+            switch (type) {
+            case P1:
+                return;
+            case EG:
+                return;
+            case P3:
+                writer1 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
+                    pathSeparator + getOutput1()));
+            
+                writer2 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
+                    pathSeparator + getOutput2()));
+                writer3 = null;
+                break;
+            case N4:
+                writer1 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
+                    pathSeparator + getOutput1()));
+            
+                writer2 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
+                    pathSeparator + getOutput2()));
+                writer3 = null;
+                break;
+            case EM:
+                writer1 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
+                    pathSeparator + getOutput1()));
+            
+                writer2 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
+                    pathSeparator + getOutput2()));
+            
+                writer3 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
+                    pathSeparator + getOutput3()));
+                break;
+            default:
+                return;
+            }
+            
             long startTime = System.currentTimeMillis();
             
             System.out.println("Segmentation started.");
     
             reader1 = new BufferedReader(new FileReader(input));
-            reader2 = new BufferedReader(new FileReader(outputFilename));
-            
-            writer1 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
-                    pathSeparator + output1));
-            
-            writer2 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
-                    pathSeparator + output2));
-            
-            writer3 = new BufferedWriter(new FileWriter(getCurrentDirectory() +
-                    pathSeparator + output3));
+            reader2 = new BufferedReader(new FileReader(getOutputFileName()));
             
             int totalEpoch1 = 0;
             int totalEpoch2 = 0;
             int totalEpoch3 = 0;
             
-            for (int i = 0; i < numberOfEpochs; i++) {
+            for (int i = 0; i < getNumberOfEpochs(); i++) {
                 String line = reader1.readLine();
                 String[] elements = line.split( "" + elementSegmentatorSeparator);
                 int last = elements.length - 1;
@@ -87,7 +163,7 @@ public class EpochSegmentator extends EEGFileManager {
                     totalEpoch3++;
                     for (int l = start; l < start + numberOfSamplesPerEpoch; l++) {
                         String subline = reader2.readLine();
-                        if (subline != null) {
+                        if (subline != null && writer3 != null) {
                             writer3.write(subline);
                             writer3.newLine();
                         } else {
@@ -120,7 +196,11 @@ public class EpochSegmentator extends EEGFileManager {
                 
                 writer1.close();
                 writer2.close();
-                writer3.close();
+                
+                if (writer3 != null) {
+                    writer3.close();
+                }
+                
             } catch (IOException ex) {
                 Logger.getLogger(EpochSegmentator.class.getName())
                         .log(Level.SEVERE, null, ex);

@@ -11,29 +11,8 @@ import java.util.logging.Logger;
 
 public class MatrixGenerator extends EEGFileManager {
     
-    String[] dataset1 = {
-        "EGF1.DAT", "EGF3.DAT", "EGC3.DAT", "EGP3.DAT",
-        "EGO1.DAT", "EGF7.DAT", "EGT3.DAT", "EGT5.DAT"
-    };
-    
-    String[] dataset2 = {
-        "EGF2.DAT", "EGF4.DAT", "EGC4.DAT", "EGP4.DAT",
-        "EGO2.DAT", "EGF8.DAT", "EGT4.DAT", "EGT6.DAT"
-    };
-    
-    MatrixGenerator(int numberOfEpochs) {
-        super(numberOfEpochs);
-    }
-    
-    @Override
-    public void listFilenames() {
-        for (String filename : dataset1) {
-            System.out.println(filename);
-        }
-        
-        for (String filename : dataset2) {
-            System.out.println(filename);
-        }
+    MatrixGenerator(ParadigmType type) {
+        super(type);
     }
     
     public void generate() {
@@ -94,7 +73,7 @@ public class MatrixGenerator extends EEGFileManager {
                     pathSeparator + dataset2[7]));
             
             writer = new BufferedWriter(new FileWriter(getCurrentDirectory() +
-                    pathSeparator + outputFilename));
+                    pathSeparator + getOutputFileName()));
             
             for (int i = 0; i < numberOfLines; i++) {
                 String line1 = reader1.readLine();
