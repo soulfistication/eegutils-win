@@ -64,7 +64,7 @@ public class EpochSegmentator extends EEGFileManager {
     
     private String elementSegmentatorSeparator = ",";
 
-    private String input = "p300.csv";
+    private String input = getParadigmTypePrefix() +  ".csv";
     
     EpochSegmentator(ParadigmType type) {
         super(type);
