@@ -195,8 +195,18 @@ public class MatrixGenerator extends EEGFileManager {
     }
 
     private double convert(String pointString) {
-        int point = Integer.parseInt(pointString);
-        return ((point - 2048)/25.0);
+        try {
+            int point = Integer.parseInt(pointString);
+            return ((point - 2048)/25.0);
+        } catch (NumberFormatException nfe) {
+            
+            System.out.println("Offending string is: " + pointString);
+            
+            Logger.getLogger(MatrixGenerator.class.getName())
+                    .log(Level.SEVERE, null, nfe);
+        } 
+        return -9999.99;
+        
     }
     
 }

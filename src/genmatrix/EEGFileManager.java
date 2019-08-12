@@ -9,7 +9,6 @@ public class EEGFileManager {
     public static String pathSeparator = File.separator;
     public static char elementSeparator = '\t';
     
-    public int numberOfSamplesPerEpoch = 256;
     public int numberOfLines;
     
     protected String[] rawDataset1 = {
@@ -50,7 +49,16 @@ public class EEGFileManager {
             dataset2[i] = getParadigmTypePrefix() + dataset2[i];
         }
 
-        numberOfLines = numberOfSamplesPerEpoch * getNumberOfEpochs();
+        numberOfLines = numberOfSamplesPerEpoch() * getNumberOfEpochs();
+    }
+    
+    public int numberOfSamplesPerEpoch() {
+        switch (type) {
+            case P1:
+                return 128;
+            default:
+                return 256;
+        }
     }
     
     protected String getParadigmTypePrefix() {

@@ -133,11 +133,11 @@ public class EpochSegmentator extends EEGFileManager {
                 String[] elements = line.split( "" + elementSegmentatorSeparator);
                 int last = elements.length - 1;
                 String element = elements[last];
-                int start = i * numberOfSamplesPerEpoch;
+                int start = i * numberOfSamplesPerEpoch();
 
                 if (element.equals("1")) {
                     totalEpoch1++;
-                    for (int j = start; j < start + numberOfSamplesPerEpoch ; j++) {
+                    for (int j = start; j < start + numberOfSamplesPerEpoch() ; j++) {
                         String subline = reader2.readLine();
                         if (subline != null) {
                             writer1.write(subline);
@@ -149,7 +149,7 @@ public class EpochSegmentator extends EEGFileManager {
                     
                 } else if (element.equals("2")) {
                     totalEpoch2++;
-                    for (int k = start; k < start + numberOfSamplesPerEpoch; k++) {
+                    for (int k = start; k < start + numberOfSamplesPerEpoch(); k++) {
                         String subline = reader2.readLine();
                         if (subline != null) {
                             writer2.write(subline);
@@ -161,7 +161,7 @@ public class EpochSegmentator extends EEGFileManager {
                     
                 } else if (element.equals("3")) {
                     totalEpoch3++;
-                    for (int l = start; l < start + numberOfSamplesPerEpoch; l++) {
+                    for (int l = start; l < start + numberOfSamplesPerEpoch(); l++) {
                         String subline = reader2.readLine();
                         if (subline != null && writer3 != null) {
                             writer3.write(subline);
