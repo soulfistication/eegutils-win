@@ -47,7 +47,7 @@ public class EEGFileManager {
         dataset2 = rawDataset2.clone();
         
         for (int i = 0; i < rawDataset2.length; i++) {
-            rawDataset2[i] = getParadigmTypePrefix() + dataset2[i];
+            dataset2[i] = getParadigmTypePrefix() + dataset2[i];
         }
 
         numberOfLines = numberOfSamplesPerEpoch * getNumberOfEpochs();
