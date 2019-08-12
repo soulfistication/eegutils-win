@@ -4,7 +4,7 @@ import java.io.File;
 
 public class EEGFileManager {
    
-    public static String programVersion = "1.3.1";
+    public static String programVersion = "1.3.2";
     
     public static String pathSeparator = File.separator;
     public static char elementSeparator = '\t';
