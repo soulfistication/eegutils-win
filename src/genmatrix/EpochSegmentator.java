@@ -191,16 +191,21 @@ public class EpochSegmentator extends EEGFileManager {
                     .log(Level.SEVERE, null, io);
         } finally {
             try {
-                reader1.close();
-                reader2.close();
-                
-                writer1.close();
-                writer2.close();
-                
+                if (reader1 != null) {
+                    reader1.close();
+                }
+                if (reader2 != null) {
+                    reader2.close();
+                }
+                if (writer1 != null) {
+                    writer1.close();
+                }
+                if (writer2 != null) {
+                    writer2.close();
+                }
                 if (writer3 != null) {
                     writer3.close();
                 }
-                
             } catch (IOException ex) {
                 Logger.getLogger(EpochSegmentator.class.getName())
                         .log(Level.SEVERE, null, ex);

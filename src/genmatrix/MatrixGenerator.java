@@ -128,24 +128,57 @@ public class MatrixGenerator extends EEGFileManager {
         } finally {
             
             try {
-                reader1.close();
-                reader2.close();
-                reader3.close();
-                reader4.close();
-                reader5.close();
-                reader6.close();
-                reader7.close();
-                reader8.close();
-                reader9.close();
-                reader10.close();
-                reader11.close();
-                reader12.close();
-                reader13.close();
-                reader14.close();
-                reader15.close();
-                reader16.close();
-            
-                writer.close();
+                if (reader1 != null) {
+                    reader1.close();
+                }
+                if (reader2 != null) {
+                    reader2.close();
+                }
+                if (reader3 != null) {
+                    reader3.close();
+                }
+                if (reader4 != null) {
+                    reader4.close();
+                }
+                if (reader5 != null) {
+                    reader5.close();
+                }
+                if (reader6 != null) {
+                    reader6.close();
+                }
+                if (reader7 != null) {
+                    reader7.close();
+                }
+                if (reader8 != null) {
+                    reader8.close();
+                }
+                if (reader9 != null) {
+                    reader9.close();
+                }
+                if (reader10 != null) {
+                    reader10.close();
+                }
+                if (reader11 != null) {
+                    reader11.close();
+                }
+                if (reader12 != null) {
+                    reader12.close();
+                }
+                if (reader13 != null) {
+                    reader13.close();
+                }
+                if (reader14 != null) {
+                    reader14.close();
+                }
+                if (reader15 != null) {
+                    reader15.close();
+                }
+                if (reader16 != null) {
+                    reader16.close();
+                }
+                if (writer != null) {
+                    writer.close();
+                }
                 
             } catch(IOException io) {
                 
