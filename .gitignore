@@ -1,8 +1,6 @@
 dist/
-
 build/
-
 *.DAT
-
 *.csv
+.DS_Store
 
