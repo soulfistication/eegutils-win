@@ -6,11 +6,13 @@ public class Main {
         
         System.out.println("GenMatrix ver: " + EEGFileManager.programVersion + "\n");
         
-        EpochSegmentator.ParadigmType requestedType = EpochSegmentator.ParadigmType.P1; // Default is P1
+        EpochSegmentator.ParadigmType requestedType = EpochSegmentator.ParadigmType.P1;
         
         if (args.length != 1) {
             System.out.println("Usage: java -jar GenMatrix.jar <Type>");
-            System.out.println("Where <Type> = P1 | EG | P3 | N4 | EM");
+            System.out.println("<Type> = P1 | EG | P3 | N4 | EM");
+            System.out.println();
+            return;
         } else {
             if (args[0].equals("P1")) {
                 requestedType = EpochSegmentator.ParadigmType.P1;
@@ -22,6 +24,9 @@ public class Main {
                 requestedType = EpochSegmentator.ParadigmType.N4;
             } else if (args[0].equals("EM")) {
                 requestedType = EpochSegmentator.ParadigmType.EM;
+            } else {
+                System.out.println("Paradigm type not recognized");
+                return;
             }
         }
         
