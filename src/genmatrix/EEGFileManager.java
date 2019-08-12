@@ -12,18 +12,18 @@ public class EEGFileManager {
     public int numberOfSamplesPerEpoch = 256;
     public int numberOfLines;
     
-    String[] rawDataset1 = {
+    protected String[] rawDataset1 = {
         "F1.DAT", "F3.DAT", "C3.DAT", "P3.DAT",
         "O1.DAT", "F7.DAT", "T3.DAT", "T5.DAT"
     };
     
-    String[] rawDataset2 = {
+    protected String[] rawDataset2 = {
         "F2.DAT", "F4.DAT", "C4.DAT", "P4.DAT",
         "O2.DAT", "F8.DAT", "T4.DAT", "T6.DAT"
     };
     
-    String[] dataset1;
-    String[] dataset2;
+    protected String[] dataset1;
+    protected String[] dataset2;
     
     protected enum ParadigmType {
         P1,
@@ -53,7 +53,7 @@ public class EEGFileManager {
         numberOfLines = numberOfSamplesPerEpoch * getNumberOfEpochs();
     }
     
-    String getParadigmTypePrefix() {
+    protected String getParadigmTypePrefix() {
         switch (type) {
             case P1:
                 return "P1";
@@ -70,7 +70,7 @@ public class EEGFileManager {
         }
     }
     
-    String getOutputFileName() {
+    protected String getOutputFileName() {
         switch (type) {
             case P1:
                 return "P1.asc";
@@ -81,7 +81,7 @@ public class EEGFileManager {
         }
     }
     
-    int getNumberOfEpochs() {
+    protected int getNumberOfEpochs() {
         int numberOfEpochs = 0;
         switch(type) {
             case P1:
