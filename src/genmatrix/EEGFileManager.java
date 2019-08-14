@@ -90,7 +90,7 @@ public class EEGFileManager {
     }
     
     protected int getNumberOfEpochs() {
-        int numberOfEpochs = 0;
+        int numberOfEpochs;
         switch(type) {
             case P1:
                 numberOfEpochs = 180;

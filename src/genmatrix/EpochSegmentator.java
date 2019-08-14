@@ -210,6 +210,7 @@ public class EpochSegmentator extends EEGFileManager {
                 Logger.getLogger(EpochSegmentator.class.getName())
                         .log(Level.SEVERE, null, ex);
             }
+            
         }
         
     }

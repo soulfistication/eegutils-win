@@ -17,7 +17,7 @@ public class MatrixGenerator extends EEGFileManager {
     
     public void generate() {
         System.out.println("Matrix generation started.");
-        long init = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
 
         BufferedReader reader1 = null;
         BufferedReader reader2 = null;
@@ -187,7 +187,7 @@ public class MatrixGenerator extends EEGFileManager {
         }
         
         long end = System.currentTimeMillis();
-        long result = end - init;
+        long result = end - start;
         System.out.println("Matrix generation finished in: " + result + " milliseconds.");
     }
 
