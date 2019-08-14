@@ -93,9 +93,6 @@ public class MatrixGenerator extends EEGFileManager {
                 String line15 = reader15.readLine();
                 String line16 = reader16.readLine();
                 
-                assert line1 != null;
-                assert line2 != null;
-                
                 writer.write(
                         "" + 
                         convert(line1) + elementSeparator + 
@@ -182,7 +179,7 @@ public class MatrixGenerator extends EEGFileManager {
                 
             } catch(IOException io) {
                 
-                Logger.getLogger(EpochSegmentator.class.getName())
+                Logger.getLogger(MatrixGenerator.class.getName())
                         .log(Level.SEVERE, null, io);
                 
             }
@@ -195,6 +192,12 @@ public class MatrixGenerator extends EEGFileManager {
     }
 
     private double convert(String pointString) {
+        double errorCode = -99999999.99;
+        if (pointString == null) {
+            Logger.getLogger(MatrixGenerator.class.getName())
+                    .log(Level.SEVERE, "Warning! line was null.");
+            return errorCode;
+        }
         try {
             int point = Integer.parseInt(pointString);
             return ((point - 2048)/25.0);
@@ -205,8 +208,7 @@ public class MatrixGenerator extends EEGFileManager {
             Logger.getLogger(MatrixGenerator.class.getName())
                     .log(Level.SEVERE, null, nfe);
         } 
-        return -9999.99;
-        
+        return errorCode;
     }
     
 }
