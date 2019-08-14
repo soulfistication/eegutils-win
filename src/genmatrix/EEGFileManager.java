@@ -49,10 +49,10 @@ public class EEGFileManager {
             dataset2[i] = getParadigmTypePrefix() + dataset2[i];
         }
 
-        numberOfLines = numberOfSamplesPerEpoch() * getNumberOfEpochs();
+        numberOfLines = getNumberOfSamplesPerEpoch() * getNumberOfEpochs();
     }
     
-    public int numberOfSamplesPerEpoch() {
+    public int getNumberOfSamplesPerEpoch() {
         switch (type) {
             case P1:
                 return 128;
