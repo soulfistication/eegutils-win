@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package genmatrix;
 
 import java.io.BufferedReader;
@@ -9,16 +14,20 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Ivan Almada
+ */
 public class MatrixGenerator extends EEGFileManager {
-    
-    MatrixGenerator(ParadigmType type) {
+
+    public MatrixGenerator(ParadigmType type) {
         super(type);
     }
     
     public void generate() {
         System.out.println("Matrix generation started.");
         long start = System.currentTimeMillis();
-
+        
         BufferedReader reader1 = null;
         BufferedReader reader2 = null;
         BufferedReader reader3 = null;
@@ -39,41 +48,24 @@ public class MatrixGenerator extends EEGFileManager {
         BufferedWriter writer = null;
         
         try {
-            reader1 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset1[0]));
-            reader2 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset1[1]));
-            reader3 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset1[2]));
-            reader4 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset1[3]));
-            reader5 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset1[4]));
-            reader6 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset1[5]));
-            reader7 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset1[6]));
-            reader8 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset1[7]));
-            reader9 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset2[0]));
-            reader10 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset2[1]));
-            reader11 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset2[2]));
-            reader12 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset2[3]));
-            reader13 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset2[4]));
-            reader14 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset2[5]));
-            reader15 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset2[6]));
-            reader16 = new BufferedReader(new FileReader(getCurrentDirectory() +
-                    pathSeparator + dataset2[7]));
+            reader1 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset1[0]));
+            reader2 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset1[1]));
+            reader3 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset1[2]));
+            reader4 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset1[3]));
+            reader5 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset1[4]));
+            reader6 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset1[5]));
+            reader7 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset1[6]));
+            reader8 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset1[7]));
+            reader9 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset2[0]));
+            reader10 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset2[1]));
+            reader11 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset2[2]));
+            reader12 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset2[3]));
+            reader13 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset2[4]));
+            reader14 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset2[5]));
+            reader15 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset2[6]));
+            reader16 = new BufferedReader(new FileReader(getCurrentDirectory() + pathSeparator + dataset2[7]));
             
-            writer = new BufferedWriter(new FileWriter(getCurrentDirectory() +
-                    pathSeparator + getOutputFileName()));
+            writer = new BufferedWriter(new FileWriter(getCurrentDirectory() + pathSeparator + getOutputFilename()));
             
             for (int i = 0; i < numberOfLines; i++) {
                 String line1 = reader1.readLine();
@@ -94,34 +86,32 @@ public class MatrixGenerator extends EEGFileManager {
                 String line16 = reader16.readLine();
                 
                 writer.write(
-                        "" + 
-                        convert(line1) + elementSeparator + 
-                        convert(line2) + elementSeparator +
-                        convert(line3) + elementSeparator + 
-                        convert(line4) + elementSeparator +
-                        convert(line5) + elementSeparator + 
-                        convert(line6) + elementSeparator +
-                        convert(line7) + elementSeparator + 
-                        convert(line8) + elementSeparator +
-                        convert(line9) + elementSeparator + 
-                        convert(line10) + elementSeparator +
-                        convert(line11) + elementSeparator + 
-                        convert(line12) + elementSeparator +
-                        convert(line13) + elementSeparator + 
-                        convert(line14) + elementSeparator +
-                        convert(line15) + elementSeparator + 
-                        convert(line16)
+                    "" + 
+                    convert(line1) + elementSeparator +
+                    convert(line2) + elementSeparator +
+                    convert(line3) + elementSeparator +
+                    convert(line4) + elementSeparator +
+                    convert(line5) + elementSeparator +
+                    convert(line6) + elementSeparator +
+                    convert(line7) + elementSeparator +
+                    convert(line8) + elementSeparator +
+                    convert(line9) + elementSeparator +
+                    convert(line10) + elementSeparator +
+                    convert(line11) + elementSeparator +
+                    convert(line12) + elementSeparator +
+                    convert(line13) + elementSeparator +
+                    convert(line14) + elementSeparator +
+                    convert(line15) + elementSeparator +
+                    convert(line16)
                 );
                 
                 writer.newLine();
             }
             
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MatrixGenerator.class.getName())
-                    .log(Level.WARNING, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(MatrixGenerator.class.getName())
-                    .log(Level.WARNING, null, ex);
+        } catch (FileNotFoundException fnfe) {
+            Logger.getLogger(MatrixGenerator.class.getName()).log(Level.SEVERE, "File not found on Matrix Generator", fnfe);
+        } catch (IOException ioe) {
+            Logger.getLogger(MatrixGenerator.class.getName()).log(Level.SEVERE, "I/O Exception on Matrix Generator", ioe);
         } finally {
             
             try {
@@ -177,38 +167,27 @@ public class MatrixGenerator extends EEGFileManager {
                     writer.close();
                 }
                 
-            } catch(IOException io) {
-                
-                Logger.getLogger(MatrixGenerator.class.getName())
-                        .log(Level.SEVERE, null, io);
-                
+            } catch (IOException ex) {
+                Logger.getLogger(MatrixGenerator.class.getName()).log(Level.WARNING, "Error while closing streams", ex);
             }
-            
         }
         
         long end = System.currentTimeMillis();
         long result = end - start;
-        System.out.println("Matrix generation finished in: " + result + " milliseconds.");
+        System.out.println("Matrix Generation finished in " + result + " milliseconds.");
     }
-
+    
     private double convert(String pointString) {
-        double errorCode = -99999999.99;
+        double error = -999999999.99;
         if (pointString == null) {
-            Logger.getLogger(MatrixGenerator.class.getName())
-                    .log(Level.SEVERE, "Warning! line was null.");
-            return errorCode;
+            return error;
         }
         try {
             int point = Integer.parseInt(pointString);
-            return ((point - 2048)/25.0);
+            return ((point - 2048) / 25.0);
         } catch (NumberFormatException nfe) {
-            
-            System.out.println("Offending string is: " + pointString);
-            
-            Logger.getLogger(MatrixGenerator.class.getName())
-                    .log(Level.SEVERE, null, nfe);
-        } 
-        return errorCode;
+            Logger.getLogger(MatrixGenerator.class.getName()).log(Level.SEVERE, "Error reading line: " + pointString + " is not a valid integer value", nfe);
+        }
+        return error;
     }
-    
 }
