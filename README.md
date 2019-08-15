@@ -2,7 +2,7 @@
 
 EEG tools for Windows.
 
-Version History:
+Version History and Release Notes:
 
 1.0: Original version in Schwanke's computer.
 
@@ -16,4 +16,7 @@ Version History:
 
 1.3.2: P1 and only P1 will change the frequency to 128 samples per epoch instead of 256.
 
+1.3.3: Small Refactor to the code (Code is now being developed on windows). And now you can
+       invoke the program with small case letters: eg | p1 | n4 | p3 because users were typing
+       it with lowercase.
 
