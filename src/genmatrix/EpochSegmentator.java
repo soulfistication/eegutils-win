@@ -269,30 +269,30 @@ public class EpochSegmentator extends EEGFileManager {
                 }
                 else if (element.equals("5")) {
                     totalEpoch5++;
-                    for (int l = start; l < start + getNumberOfSamplesPerEpoch(); l++) {
+                    for (int n = start; n < start + getNumberOfSamplesPerEpoch(); n++) {
                         String subline = reader2.readLine();
                         if (subline != null && writer5 != null) {
                             writer5.write(subline);
                             writer5.newLine();
                         } else {
-                            System.out.println("Null index l = " + l);
+                            System.out.println("Null index l = " + n);
                         }
                     }
                 }
-                
-                long endTime = System.currentTimeMillis();
-                long totalTime = endTime - startTime;
-                
-                System.out.println("Segmentation finished in " + totalTime + " milliseconds.");
-                System.out.println("Stats: ");
-                
-                System.out.println("Total epoch1 = " + totalEpoch1);
-                System.out.println("Total epoch2 = " + totalEpoch2);
-                System.out.println("Total epoch3 = " + totalEpoch3);
-                System.out.println("Total epoch4 = " + totalEpoch4);
-                System.out.println("Total epoch5 = " + totalEpoch5);
-                
             }
+            
+            long endTime = System.currentTimeMillis();
+            long totalTime = endTime - startTime;
+                
+            System.out.println("Segmentation finished in " + totalTime + " milliseconds.");
+            System.out.println("Stats: ");
+                
+            System.out.println("Total epoch1 = " + totalEpoch1);
+            System.out.println("Total epoch2 = " + totalEpoch2);
+            System.out.println("Total epoch3 = " + totalEpoch3);
+            System.out.println("Total epoch4 = " + totalEpoch4);
+            System.out.println("Total epoch5 = " + totalEpoch5);
+            
         } catch (FileNotFoundException fnfe) {
             Logger.getLogger(EpochSegmentator.class.getName()).log(Level.SEVERE, "Error segmenting file not found", fnfe);
         } catch (IOException ioex) {
