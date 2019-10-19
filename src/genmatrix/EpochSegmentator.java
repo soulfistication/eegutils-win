@@ -37,6 +37,8 @@ public class EpochSegmentator extends EEGFileManager {
                 return "N4CONGR.ASC";
             case EM:
                 return "EMENOJO.ASC";
+            case P5:
+                return "E5ENOJO.ASC";
             default:
                 return "";
         }
@@ -54,6 +56,8 @@ public class EpochSegmentator extends EEGFileManager {
                 return "N4INCONGR.ASC";
             case EM:
                 return "EMFELIZ.ASC";
+            case P5:
+                return "E5FELIZ.ASC";
             default:
                 return "";
         }
@@ -71,6 +75,46 @@ public class EpochSegmentator extends EEGFileManager {
                 return "";
             case EM:
                 return "EMNEUTRO.ASC";
+            case P5:
+                return "E5MIEDO.ASC";
+            default:
+                return "";
+        }
+    }
+    
+    protected String getOutput4() {
+        switch (type) {
+            case P1:
+                return "";
+            case EG:
+                return "";
+            case P3:
+                return "";
+            case N4:
+                return "";
+            case EM:
+                return "";
+            case P5:
+                return "E5TRISTE.ASC";
+            default:
+                return "";
+        }
+    }
+    
+    protected String getOutput5() {
+        switch (type) {
+            case P1:
+                return "";
+            case EG:
+                return "";
+            case P3:
+                return "";
+            case N4:
+                return "";
+            case EM:
+                return "";
+            case P5:
+                return "E5NEUTRO.ASC";
             default:
                 return "";
         }
@@ -88,6 +132,8 @@ public class EpochSegmentator extends EEGFileManager {
         BufferedWriter writer1 = null;
         BufferedWriter writer2 = null;
         BufferedWriter writer3 = null;
+        BufferedWriter writer4 = null;
+        BufferedWriter writer5 = null;
         
         try {
             // Configure the writers depending on the paradigm type.
@@ -104,6 +150,8 @@ public class EpochSegmentator extends EEGFileManager {
                             new FileWriter(getCurrentDirectory() + pathSeparator + getOutput2())
                             );
                     writer3 = null;
+                    writer4 = null;
+                    writer5 = null;
                     break;
                 case N4:
                     writer1 = new BufferedWriter(
@@ -113,6 +161,8 @@ public class EpochSegmentator extends EEGFileManager {
                             new FileWriter(getCurrentDirectory() + pathSeparator + getOutput2())
                             );
                     writer3 = null;
+                    writer4 = null;
+                    writer5 = null;
                     break;
                 case EM:
                     writer1 = new BufferedWriter(
@@ -124,7 +174,26 @@ public class EpochSegmentator extends EEGFileManager {
                     writer3 = new BufferedWriter(
                             new FileWriter(getCurrentDirectory() + pathSeparator + getOutput3())
                             );
+                    writer4 = null;
+                    writer5 = null;
                     break;
+                case P5:
+                    writer1 = new BufferedWriter(
+                            new FileWriter(getCurrentDirectory() + pathSeparator + getOutput1())
+                            );
+                    writer2 = new BufferedWriter(
+                            new FileWriter(getCurrentDirectory() + pathSeparator + getOutput2())
+                            );
+                    writer3 = new BufferedWriter(
+                            new FileWriter(getCurrentDirectory() + pathSeparator + getOutput3())
+                            );
+                    writer4 = new BufferedWriter(
+                            new FileWriter(getCurrentDirectory() + pathSeparator + getOutput4())
+                            );
+                    writer5 = new BufferedWriter(
+                            new FileWriter(getCurrentDirectory() + pathSeparator + getOutput5())
+                            );
+                    
                 default:
                     return;
             }
@@ -139,6 +208,8 @@ public class EpochSegmentator extends EEGFileManager {
             int totalEpoch1 = 0;
             int totalEpoch2 = 0;
             int totalEpoch3 = 0;
+            int totalEpoch4 = 0;
+            int totalEpoch5 = 0;
             
             for (int i = 0; i < getNumberOfEpochs(); i++) {
                 String line = reader1.readLine();
@@ -183,6 +254,30 @@ public class EpochSegmentator extends EEGFileManager {
                         }
                     }
                 }
+                else if (element.equals("4")) {
+                    totalEpoch4++;
+                    for (int l = start; l < start + getNumberOfSamplesPerEpoch(); l++) {
+                        String subline = reader2.readLine();
+                        if (subline != null && writer4 != null) {
+                            writer4.write(subline);
+                            writer4.newLine();
+                        } else {
+                            System.out.println("Null index l = " + l);
+                        }
+                    }
+                }
+                else if (element.equals("5")) {
+                    totalEpoch5++;
+                    for (int l = start; l < start + getNumberOfSamplesPerEpoch(); l++) {
+                        String subline = reader2.readLine();
+                        if (subline != null && writer5 != null) {
+                            writer5.write(subline);
+                            writer5.newLine();
+                        } else {
+                            System.out.println("Null index l = " + l);
+                        }
+                    }
+                }
                 
                 long endTime = System.currentTimeMillis();
                 long totalTime = endTime - startTime;
@@ -193,6 +288,8 @@ public class EpochSegmentator extends EEGFileManager {
                 System.out.println("Total epoch1 = " + totalEpoch1);
                 System.out.println("Total epoch2 = " + totalEpoch2);
                 System.out.println("Total epoch3 = " + totalEpoch3);
+                System.out.println("Total epoch4 = " + totalEpoch4);
+                System.out.println("Total epoch5 = " + totalEpoch5);
                 
             }
         } catch (FileNotFoundException fnfe) {
@@ -215,6 +312,12 @@ public class EpochSegmentator extends EEGFileManager {
                 }
                 if (writer3 != null) {
                     writer3.close();
+                }
+                if (writer4 != null) {
+                    writer4.close();
+                }
+                if (writer5 != null) {
+                    writer5.close();
                 }
             } catch (IOException ex) {
                 Logger.getLogger(EpochSegmentator.class.getName()).log(Level.SEVERE, "I/O Error while closing file", ex);

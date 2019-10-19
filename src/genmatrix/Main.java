@@ -22,7 +22,7 @@ public class Main {
         
         if (args.length != 1) {
             System.out.println("Usage: java -jar GenMatrix.jar <Type>");
-            System.out.println("<Type> = P1 | EG | P3 | N4 | EM\n");
+            System.out.println("<Type> = P1 | EG | P3 | N4 | EM | P5\n");
         } else {
             if (args[0].equalsIgnoreCase("P1")) {
                 requestedType = EpochSegmentator.ParadigmType.P1;
@@ -34,6 +34,8 @@ public class Main {
                 requestedType = EpochSegmentator.ParadigmType.N4;
             } else if (args[0].equalsIgnoreCase("EM")) {
                 requestedType = EpochSegmentator.ParadigmType.EM;
+            } else if (args[0].equalsIgnoreCase("P5")) {
+                requestedType = EpochSegmentator.ParadigmType.P5;
             } else {
                 System.out.println("Paradigm type not recognized");
                 return;

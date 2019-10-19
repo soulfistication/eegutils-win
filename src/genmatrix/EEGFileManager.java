@@ -14,7 +14,7 @@ import java.io.File;
 
 public class EEGFileManager {
 
-    public static String programVersion = "1.3.3";
+    public static String programVersion = "1.3.4";
     
     public static String pathSeparator = File.separator;
     public static char elementSeparator = '\t';
@@ -35,7 +35,7 @@ public class EEGFileManager {
     protected String[] dataset2;
     
     protected enum ParadigmType {
-        P1, EG, P3, N4, EM
+        P1, EG, P3, N4, EM, P5
     }
     
     protected ParadigmType type;
@@ -104,6 +104,8 @@ public class EEGFileManager {
                 return "N4";
             case EM:
                 return "EM";
+            case P5:
+                return "P5";
             default:
                 return "";
         }
