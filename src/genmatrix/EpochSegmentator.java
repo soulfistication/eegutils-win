@@ -38,7 +38,7 @@ public class EpochSegmentator extends EEGFileManager {
             case EM:
                 return "EMENOJO.ASC";
             case P5:
-                return "E5ENOJO.ASC";
+                return "P5ENOJO.ASC";
             default:
                 return "";
         }
@@ -57,7 +57,7 @@ public class EpochSegmentator extends EEGFileManager {
             case EM:
                 return "EMFELIZ.ASC";
             case P5:
-                return "E5FELIZ.ASC";
+                return "P5FELIZ.ASC";
             default:
                 return "";
         }
@@ -76,7 +76,7 @@ public class EpochSegmentator extends EEGFileManager {
             case EM:
                 return "EMNEUTRO.ASC";
             case P5:
-                return "E5MIEDO.ASC";
+                return "P5MIEDO.ASC";
             default:
                 return "";
         }
@@ -95,7 +95,7 @@ public class EpochSegmentator extends EEGFileManager {
             case EM:
                 return "";
             case P5:
-                return "E5TRISTE.ASC";
+                return "P5TRISTE.ASC";
             default:
                 return "";
         }
@@ -114,7 +114,7 @@ public class EpochSegmentator extends EEGFileManager {
             case EM:
                 return "";
             case P5:
-                return "E5NEUTRO.ASC";
+                return "P5NEUTRO.ASC";
             default:
                 return "";
         }
@@ -193,6 +193,7 @@ public class EpochSegmentator extends EEGFileManager {
                     writer5 = new BufferedWriter(
                             new FileWriter(getCurrentDirectory() + pathSeparator + getOutput5())
                             );
+                    break;
                     
                 default:
                     return;
@@ -256,13 +257,13 @@ public class EpochSegmentator extends EEGFileManager {
                 }
                 else if (element.equals("4")) {
                     totalEpoch4++;
-                    for (int l = start; l < start + getNumberOfSamplesPerEpoch(); l++) {
+                    for (int m = start; m < start + getNumberOfSamplesPerEpoch(); m++) {
                         String subline = reader2.readLine();
                         if (subline != null && writer4 != null) {
                             writer4.write(subline);
                             writer4.newLine();
                         } else {
-                            System.out.println("Null index l = " + l);
+                            System.out.println("Null index m = " + m);
                         }
                     }
                 }

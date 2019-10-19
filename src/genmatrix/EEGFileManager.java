@@ -28,7 +28,7 @@ public class EEGFileManager {
     
     protected String[] rawDataset2 = {
         "F2.DAT", "F4.DAT", "C4.DAT", "P4.DAT",
-        "02.DAT", "F8.DAT", "T4.DAT", "T6.DAT"
+        "O2.DAT", "F8.DAT", "T4.DAT", "T6.DAT"
     };
     
     protected String[] dataset1;
@@ -83,6 +83,9 @@ public class EEGFileManager {
                 numberOfEpochs = 118;
                 break;
             case EM:
+                numberOfEpochs = 300;
+                break;
+            case P5:
                 numberOfEpochs = 300;
                 break;
             default:
