@@ -14,7 +14,7 @@ import java.io.File;
 
 public class EEGFileManager {
 
-    public static String programVersion = "1.3.4";
+    public static String programVersion = "1.3.5";
     
     public static String pathSeparator = File.separator;
     public static char elementSeparator = '\t';
@@ -35,7 +35,7 @@ public class EEGFileManager {
     protected String[] dataset2;
     
     protected enum ParadigmType {
-        P1, EG, P3, N4, EM, P5
+        P1, EG, P3, N4, EM, P5, P51
     }
     
     protected ParadigmType type;
@@ -62,6 +62,10 @@ public class EEGFileManager {
         switch (type) {
             case P1:
                 return 128;
+            case P5:
+                return 512;
+            case P51:
+                return 512;
             default:
                 return 256;
         }
@@ -88,6 +92,9 @@ public class EEGFileManager {
             case P5:
                 numberOfEpochs = 300;
                 break;
+            case P51:
+            numberOfEpochs = 240;
+                break;
             default:
                 numberOfEpochs = 300;
                 break;
@@ -109,6 +116,8 @@ public class EEGFileManager {
                 return "EM";
             case P5:
                 return "P5";
+            case P51:
+                return "P51";
             default:
                 return "";
         }

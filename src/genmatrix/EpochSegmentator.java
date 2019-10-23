@@ -39,6 +39,8 @@ public class EpochSegmentator extends EEGFileManager {
                 return "EMENOJO.ASC";
             case P5:
                 return "P5ENOJO.ASC";
+            case P51:
+                return "P51ENOJO.ASC";
             default:
                 return "";
         }
@@ -58,6 +60,8 @@ public class EpochSegmentator extends EEGFileManager {
                 return "EMFELIZ.ASC";
             case P5:
                 return "P5FELIZ.ASC";
+            case P51:
+                return "P51FELIZ.ASC";
             default:
                 return "";
         }
@@ -77,6 +81,8 @@ public class EpochSegmentator extends EEGFileManager {
                 return "EMNEUTRO.ASC";
             case P5:
                 return "P5MIEDO.ASC";
+            case P51:
+                return "P51MIEDO.ASC";
             default:
                 return "";
         }
@@ -96,6 +102,8 @@ public class EpochSegmentator extends EEGFileManager {
                 return "";
             case P5:
                 return "P5TRISTE.ASC";
+            case P51:
+                return "P51TRISTE.ASC";
             default:
                 return "";
         }
@@ -115,6 +123,8 @@ public class EpochSegmentator extends EEGFileManager {
                 return "";
             case P5:
                 return "P5NEUTRO.ASC";
+            case P51:
+                return "P51NEUTRO.ASC";
             default:
                 return "";
         }
@@ -178,6 +188,7 @@ public class EpochSegmentator extends EEGFileManager {
                     writer5 = null;
                     break;
                 case P5:
+                case P51:  // Intended Fallthrough!
                     writer1 = new BufferedWriter(
                             new FileWriter(getCurrentDirectory() + pathSeparator + getOutput1())
                             );

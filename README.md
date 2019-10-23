@@ -20,3 +20,7 @@ Version History and Release Notes:
        invoke the program with small case letters: eg | p1 | n4 | p3 because users were typing
        it with lowercase.
 
+1.3.4: Added P5 based on P3.
+
+1.3.5: Added P51 which is a variant of P5 with different number of epochs.
+
