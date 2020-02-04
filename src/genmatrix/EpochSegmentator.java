@@ -32,11 +32,11 @@ public class EpochSegmentator extends EEGFileManager {
             case EG:
                 return "";
             case P3:
-                return "P3INFR.ASC";
+                return "P3FREC.ASC";
             case N4:
                 return "N4CONGR.ASC";
-            case EM:
-                return "EMENOJO.ASC";
+            case MV:
+                return "MVOLD.ASC";
             case P5:
                 return "P5ENOJO.ASC";
             case P51:
@@ -53,11 +53,11 @@ public class EpochSegmentator extends EEGFileManager {
             case EG:
                 return "";
             case P3:
-                return "P3FREC.ASC";
+                return "P3INFR.ASC";
             case N4:
-                return "N4INCONGR.ASC";
-            case EM:
-                return "EMFELIZ.ASC";
+                return "N4INC.ASC";
+            case MV:
+                return "MVNEW.ASC";
             case P5:
                 return "P5FELIZ.ASC";
             case P51:
@@ -77,7 +77,7 @@ public class EpochSegmentator extends EEGFileManager {
                 return "";
             case N4:
                 return "";
-            case EM:
+            case MV:
                 return "EMNEUTRO.ASC";
             case P5:
                 return "P5MIEDO.ASC";
@@ -98,7 +98,7 @@ public class EpochSegmentator extends EEGFileManager {
                 return "";
             case N4:
                 return "";
-            case EM:
+            case MV:
                 return "";
             case P5:
                 return "P5TRISTE.ASC";
@@ -119,7 +119,7 @@ public class EpochSegmentator extends EEGFileManager {
                 return "";
             case N4:
                 return "";
-            case EM:
+            case MV:
                 return "";
             case P5:
                 return "P5NEUTRO.ASC";
@@ -174,16 +174,14 @@ public class EpochSegmentator extends EEGFileManager {
                     writer4 = null;
                     writer5 = null;
                     break;
-                case EM:
+                case MV:
                     writer1 = new BufferedWriter(
                             new FileWriter(getCurrentDirectory() + pathSeparator + getOutput1())
                             );
                     writer2 = new BufferedWriter(
                             new FileWriter(getCurrentDirectory() + pathSeparator + getOutput2())
                             );
-                    writer3 = new BufferedWriter(
-                            new FileWriter(getCurrentDirectory() + pathSeparator + getOutput3())
-                            );
+                    writer3 = null;
                     writer4 = null;
                     writer5 = null;
                     break;
