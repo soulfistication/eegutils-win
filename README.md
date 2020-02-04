@@ -22,5 +22,9 @@ Version History and Release Notes:
 
 1.3.4: Added P5 based on P3.
 
-1.3.5: Added P51 which is a variant of P5 with different number of epochs.
+1.3.5: Added P51 which is a variant of P5 with different number of epochs (240 instead of 300).
 
+1.3.6: EM changed to MV with 108 epochs and new MVOLD.ASC and MVNEW.ASC. 
+       EMNEUTRO was removed. 
+       P3 interchanged FREC for INFREC. 
+       N4INCONGR was renamed to N4INC.
